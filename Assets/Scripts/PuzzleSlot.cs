@@ -12,7 +12,7 @@ public class PuzzleSlot : MonoBehaviour
     void Start()
     {
         // Assign a unique identifier for this puzzle slot
-        slotID = "Earth"; // Example: Assign based on the specific slot type
+        //slotID = "Earth"; // Example: Assign based on the specific slot type
         Debug.Log("Initialized Slot ID: " + slotID); // Log the slot ID on initialization
     }
 
@@ -24,6 +24,7 @@ public class PuzzleSlot : MonoBehaviour
             var piece = other.GetComponent<PuzzlePiece>();
             if (piece != null)
             {
+                Debug.Log($"Piece is {piece}");
                 Renderer.color = Color.green; // Highlight the slot
                 Debug.Log($"Piece {piece.pieceID} entered slot {slotID}. Highlighting slot."); // Log entry
             }

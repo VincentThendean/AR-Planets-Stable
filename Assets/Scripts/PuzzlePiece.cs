@@ -8,12 +8,12 @@ public class PuzzlePiece : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
     private bool _isInSlot;                // Track if the piece is in a slot
 
     public string pieceID;                 // Unique identifier for the puzzle piece
-    public float radius = 0f;
+    public float radius = 50f;
 
     void Start()
     {
         // Generate a unique identifier for this puzzle piece
-        pieceID = "Earth"; // Assign based on the specific piece type
+        //pieceID = "Earth"; // Assign based on the specific piece type
         _originalPosition = transform.position; // Store the original position
     }
 
@@ -36,13 +36,14 @@ public class PuzzlePiece : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
     public void OnEndDrag(PointerEventData eventData)
     {
         Debug.Log("OnEndDrag initiated.");
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, 0.75f);
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, radius);
         bool placedInSlot = false;
 
         foreach (var hitCollider in hitColliders)
         {
             Debug.Log($"{hitCollider} loop");
             var slot = hitCollider.gameObject.GetComponent<PuzzleSlot>();
+            //Debug.Log($"slot {slot.slotID}");
             if (slot != null && slot.slotID == pieceID) // Check if IDs match
             {
                 Debug.Log($"{pieceID} is in {slot.slotID}");
